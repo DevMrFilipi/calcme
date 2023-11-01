@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap");
+:root {
+  --primary-color-bg: rgb(245, 247, 255);
+  --primary-color-bg-rgba: rgba(245, 247, 255, 0.445);
+  --primary-color-container-bg: rgb(50, 50, 50);
+  --color-hover-btn: rgb(225, 238, 238);
+}
+
+body {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: var(--primary-color-bg);
+  background: var(--primary-color-bg-rgba);
+}
+
+.container {
+  width: 480px;
+  height: 600px;
+  margin-top: 100px;
+  border-radius: 10px;
+  font-size: 1.3em;
+  line-height: 1.5em;
+  background-color: var(--primary-color-container-bg);
+}
+
+.container input {
+  text-align: right;
+  width: 98%;
+  height: 90px;
+  border: none;
+  border-radius: 10px;
+  font-size: 45px;
+  cursor: default;
+  color: #fff;
+  background-color: var(--primary-color-container-bg);
+  outline: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "ac ac de o1"
+    "n1 n2 n3 o2"
+    "n4 n5 n6 o3"
+    "n7 n8 n9 o4"
+    "n0 d eq o5";
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 85px);
+  gap: 5px;
+  padding: 5px;
+  margin-top: 5px;
+  margin: 0px 2px
+}
+
+.btn-ac{grid-area: ac;}
+.btn-de{grid-area: de;}
+
+.num1{grid-area: n1;}
+.num2{grid-area: n2;}
+.num3{grid-area: n3;}
+.num4{grid-area: n4;}
+.num5{grid-area: n5;}
+.num6{grid-area: n6;}
+.num7{grid-area: n7;}
+.num8{grid-area: n8;}
+.num9{grid-area: n9;}
+.num0{grid-area: n0;}
+
+.btn-mod{grid-area: o1;}
+.btn-mod{grid-area: o2;}
+.btn-mod{grid-area: o3;}
+.btn-mod{grid-area: o4;}
+.btn-mod{grid-area: o5;}
+
+.btn-dot{grid-area: d;}
+.btn-eq{grid-area: eq;}
+
+.btn {
+  font-size: 18px;
+  font-weight: 600;
+  background-color: azure;
+  border: none;
+  margin-left: 8px;
+}
+
+.btn:focus,
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn-ac {
+  width: 222px;
+  height: 79px;
+  border-radius: 24px;
+}
+
+.btn-de {
+  width: 103px;
+  height: 83px;
+  border-radius: 42px;
+}
+
+.btn-num {
+  width: 103px;
+  height: 83px;
+  border-radius: 36px;
+}
+
+.btn-ac,
+.btn-de {
+  background-color: rgb(134, 134, 134);
+}
+
+.btn-ac:hover,
+.btn-de:hover {
+  background-color: rgb(196, 196, 196);
+}
+
+.btn-num:hover,
+.btn-dot:hover {
+  background-color: var(--color-hover-btn);
+}
+
+.btn-dot {
+  width: 103px;
+  height: 83px;
+  border-radius: 36px;
+}
+
+.btn-eq {
+  width: 103px;
+  height: 83px;
+  border-radius: 38px;
+  background-color: greenyellow;
+}
+
+.btn-eq:hover {
+  background-color: rgb(144, 211, 44);
+}
+
+.container input[type="radio"] {
+  opacity: 0;
+  width: 0;
+  position: fixed;
+}
+
+.container label {
+  background-color: #ff8902;
+  font-weight: 600;
+  font-size: 20px;
+  padding-top: 29px;
+  margin-left: 10px;
+  width: 85px;
+  height: 56px;
+  border-radius: 36px;  
+}
+
+.container label:hover {
+  background-color: rgb(235, 134, 1);
+  cursor: pointer;
+}
+
+.container input[type="radio"]:checked + label {
+  background-color: rgb(255, 255, 255);
+  color: orange;
+}
+
+.linkedin-link {
+  margin-right: 0;
+}
+
+.container footer {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 1.3em;
+  line-height: 1.5em;
+  display: flex;
+  justify-content: center;
+}
+
+.container footer ul {
+  padding: 0 10px;
+  margin: 10px;
+  background-color: rgb(211, 211, 211);
+  border-radius: 5px;
+}
+
+.container footer ul a {
+  color: rgb(0, 0, 0);
+  margin-right: 10px;
+  margin-left: 2px;
+  text-decoration: none;
+}
+
+.container svg {
+  margin: -3px 0;
+}
+
+.container footer ul a:hover,
+.container footer ul a:focus {
+  color: #0a95f1;
+  cursor: pointer;
+}
+
+#isClickOperatorEvent {
+  font-size: 18px;
+  font-weight: 600;
+  background: #fff;
+  color: orange;
+  border: none;
+  border-radius: 5px;
+}
