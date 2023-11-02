@@ -163,7 +163,6 @@ const DOM = () => {
         let result = String(
           this.operationMath(firstValue, secondValue, operator)
         );
-        console.log(result);
         if (
           result === "NaN" ||
           result === "undefined" ||
@@ -205,7 +204,7 @@ const DOM = () => {
     formatDotFloatResults(result) {
       for(let indice in result) {
         if (result[indice] === '.') {
-          return Number(result).toFixed(3);
+          return `${Number(result).toFixed(4)}...`;
         }
       }
       return result;
