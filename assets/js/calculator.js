@@ -44,6 +44,9 @@ const DOM = () => {
           this.setStateButtonsRadio(false);
         }
         if (el.classList.contains("btn-symbol")) {
+          if (this.display.value === "0") {
+            this.clearInput();
+          }
           this.insertSimbol(el);
           operator = el.value;
           controll++;
@@ -70,88 +73,6 @@ const DOM = () => {
           operator = "";
         }
       });
-    },
-  };
-  const tryExecutableOperation = {
-    tryExecutableOperation(firstValue, secondValue, operator) {
-      try {
-        let result = String(
-          this.operationMath(firstValue, secondValue, operator)
-        );
-        if (
-          result === "NaN" ||
-          result === "undefined" ||
-          result === "Infinity"
-        ) {
-          throw Error("Valores indefinidos ou inválidos.");
-        }
-        this.display.value = result;
-      } catch (err) {
-        this.clearInput();
-        this.display.value = "0";
-      }
-    },
-  };
-  const operationMath = {
-    operationMath(firstValue = 0, secondValue = 0, operator) {
-      if (typeof firstValue !== "number" || typeof secondValue !== "number") {
-        throw Error("Valores indefinidos ou incorretos.");
-      }
-      if (firstValue === 0 && secondValue === 0) {
-        throw Error("Valores indefinidos ou incorretos.");
-      }
-      switch (operator) {
-        case "%":
-          return firstValue % secondValue;
-        case "/":
-          return firstValue / secondValue;
-        case "*":
-          return firstValue * secondValue;
-        case "-":
-          return firstValue - secondValue;
-        case "+":
-          return firstValue + secondValue;
-      }
-    },
-  };
-  const obtainFirstValueOperation = {
-    obtainFirstValueOperation() {
-      let displayValue = this.display.value;
-      for (let product in displayValue) {
-        if (
-          displayValue[product] === "%" ||
-          displayValue[product] === "/" ||
-          displayValue[product] === "*" ||
-          displayValue[product] === "-" ||
-          displayValue[product] === "+"
-        ) {
-          let relativePositionProduct = Number(product);
-          let cleanProduct = displayValue.slice(0, relativePositionProduct);
-          return Number(cleanProduct);
-        }
-      }
-    },
-  };
-  const obtainSecondValueOperation = {
-    obtainSecondValueOperation() {
-      let displayValue = this.display.value;
-      for (let product in displayValue) {
-        if (
-          displayValue[product] === "%" ||
-          displayValue[product] === "/" ||
-          displayValue[product] === "*" ||
-          displayValue[product] === "-" ||
-          displayValue[product] === "+"
-        ) {
-          let sizeProduct = displayValue.length;
-          let relativePositionProduct = Number(product) + 1;
-          let cleanProduct = displayValue.slice(
-            relativePositionProduct,
-            sizeProduct
-          );
-          return Number(cleanProduct);
-        }
-      }
     },
   };
   const setStateButtonsRadio = {
@@ -196,6 +117,100 @@ const DOM = () => {
       this.display.value += el.innerText;
     },
   };
+  const obtainFirstValueOperation = {
+    obtainFirstValueOperation() {
+      let displayValue = this.display.value;
+      for (let product in displayValue) {
+        if (
+          displayValue[product] === "%" ||
+          displayValue[product] === "/" ||
+          displayValue[product] === "*" ||
+          displayValue[product] === "-" ||
+          displayValue[product] === "+"
+        ) {
+          let relativePositionProduct = Number(product);
+          let cleanProduct = displayValue.slice(0, relativePositionProduct);
+          return Number(cleanProduct);
+        }
+      }
+    },
+  };
+  const obtainSecondValueOperation = {
+    obtainSecondValueOperation() {
+      let displayValue = this.display.value;
+      for (let product in displayValue) {
+        if (
+          displayValue[product] === "%" ||
+          displayValue[product] === "/" ||
+          displayValue[product] === "*" ||
+          displayValue[product] === "-" ||
+          displayValue[product] === "+"
+        ) {
+          let sizeProduct = displayValue.length;
+          let relativePositionProduct = Number(product) + 1;
+          let cleanProduct = displayValue.slice(
+            relativePositionProduct,
+            sizeProduct
+          );
+          return Number(cleanProduct);
+        }
+      }
+    },
+  };
+  const tryExecutableOperation = {
+    tryExecutableOperation(firstValue, secondValue, operator) {
+      try {
+        let result = String(
+          this.operationMath(firstValue, secondValue, operator)
+        );
+        console.log(result);
+        if (
+          result === "NaN" ||
+          result === "undefined" ||
+          result === "Infinity"
+        ) {
+          throw Error("Valores indefinidos ou inválidos.");
+        }
+        this.display.value = result;
+      } catch (err) {
+        console.log('cheguei aqui');
+        this.clearInput();
+        this.display.value = "0";
+      }
+    },
+  };
+  const operationMath = {
+    operationMath(firstValue = 0, secondValue = 0, operator) {
+      if (typeof firstValue !== "number" || typeof secondValue !== "number") {
+        throw Error("Valores indefinidos ou incorretos.");
+      }
+      if (firstValue === 0 && secondValue === 0) {
+        throw Error("Valores indefinidos ou incorretos.");
+      }
+      switch (operator) {
+        case "%":
+          return firstValue % secondValue;
+        case "/":
+          return this.formatDotFloatResults(String(firstValue / secondValue));
+        case "*":
+          return firstValue * secondValue;
+        case "-":
+           return firstValue - secondValue;
+        case "+":
+          return firstValue + secondValue;
+      }
+    },
+  };
+  const formatDotFloatResults = {
+    formatDotFloatResults(result) {
+      for(let indice in result) {
+        if (result[indice] === '.') {
+          return Number(result).toFixed(3);
+        }
+      }
+      return result;
+    }
+  }
   const isValidInput = {
     isValidInput(input) {
       if (
@@ -220,6 +235,7 @@ const DOM = () => {
     obtainFirstValueOperation,
     obtainSecondValueOperation,
     operationMath,
+    formatDotFloatResults,
     tryExecutableOperation
   );
   function createCalculator(display) {
@@ -237,7 +253,6 @@ const DOM = () => {
       },
     });
   }
-
   const display = document.querySelector(".display");
   const calculator = createCalculator(display);
   calculator.start();

@@ -19,7 +19,7 @@ body {
 
 .container {
   width: 480px;
-  height: 600px;
+  height: 670px;
   margin-top: 100px;
   border-radius: 10px;
   font-size: 1.3em;
@@ -30,10 +30,11 @@ body {
 .container input {
   text-align: right;
   width: 98%;
-  height: 90px;
+  height: 144px;
   border: none;
   border-radius: 10px;
-  font-size: 45px;
+  margin-right: 7px;
+  font-size: 65px;
   cursor: default;
   color: #fff;
   background-color: var(--primary-color-container-bg);
@@ -80,16 +81,22 @@ body {
 .btn-eq{grid-area: eq;}
 
 .btn {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   background-color: azure;
   border: none;
   margin-left: 8px;
+  box-shadow: 0 6px #999;
 }
 
 .btn:focus,
 .btn:hover {
   cursor: pointer;
+}
+
+.btn:active {
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
 }
 
 .btn-ac {
@@ -98,15 +105,16 @@ body {
   border-radius: 24px;
 }
 
-.btn-de {
+.btn-de, .btn-num {
   width: 103px;
   height: 83px;
+}
+
+.btn-de {
   border-radius: 42px;
 }
 
 .btn-num {
-  width: 103px;
-  height: 83px;
   border-radius: 36px;
 }
 
@@ -151,11 +159,12 @@ body {
 .container label {
   background-color: #ff8902;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 23px;
   padding-top: 29px;
   margin-left: 10px;
   width: 85px;
   height: 56px;
+  box-shadow: 0 4px #4d4d4d;
   border-radius: 36px;  
 }
 
@@ -167,6 +176,8 @@ body {
 .container input[type="radio"]:checked + label {
   background-color: rgb(255, 255, 255);
   color: orange;
+  box-shadow: 0 2px #333333;
+  transform: translateY(2px);
 }
 
 .linkedin-link {
